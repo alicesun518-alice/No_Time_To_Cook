@@ -38,4 +38,16 @@ This project uses finite state machine logic for the states of game flow and Boo
 - Vivado
 
 
+We built our game using the Pong starter code. From Pong, we kept the VGA structure, the binary score display on the FPGA board, and the coordinate-based contact logic. In Pong, that logic checks contact between the ball and paddle. In our game, we changed that idea into proximity detection between the chef and different kitchen stations.
 
+The game uses pixel_row and pixel_col to draw everything on the screen. Each object, like the chef, food items, stations, and order cards, has its own display logic. If the current pixel is inside that object, the module outputs a color and sets visible high.
+
+The game has four states: intro select, gameplay, game over, and game win. In the intro state, the player selects between two chef sprites using switches. During gameplay, the player moves the chef with the board buttons and uses BTN0 to interact.
+
+The chef has a held item state, such as none, plate, buns, cheese, patty, burger, potato, fries, cola, or sprite. When the chef is near a station and presses the action button, the held item changes. Ingredients can combine, like buns plus patty plus cheese becoming a burger, and potato becomes fries at the fryer.
+
+The order system uses item codes. Burger, fries, Sprite, and cola each have a 3-bit code. The current order has item A and item B. When the player serves the correct item at the counter, the game marks that item as done. Once all required items for that order are complete, the score increments and the game moves to the next order.
+
+For shuffling, a 3-bit counter runs continuously in the top-level module. When SW2 starts the game, the current counter value is captured as shuffle_sel. That value selects one of eight predefined order sequences, so the orders appear different each game.
+
+The game also has a 3-minute countdown timer. If the player completes all eight orders before time runs out, the game shows the win message. If the timer reaches zero first, it shows the timeout message.
