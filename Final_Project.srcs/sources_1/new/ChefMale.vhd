@@ -25,9 +25,6 @@ architecture Behavioral of chefm_display is
     constant SPRITE_W : integer := 96;
     constant SPRITE_H : integer := 96;
 
-    --constant CHEFM_X : integer := 400;
-    --constant CHEFM_Y : integer := 300;
-
     subtype chefm_color_t is std_logic_vector(3 downto 0);
 
     type chefm_row_t is array(0 to SPRITE_W-1) of chefm_color_t;
@@ -165,7 +162,7 @@ begin
             end if;
 
             case color_idx is
-                when "0000" => -- transparent/background
+                when "0000" => -- transparent
                     red   <= "0000";
                     green <= "0000";
                     blue  <= "0000";

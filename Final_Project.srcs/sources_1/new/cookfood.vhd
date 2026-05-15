@@ -9,7 +9,7 @@ entity cookfood is
         pixel_col   : in  STD_LOGIC_VECTOR(10 downto 0);
         chefm_x     : in  STD_LOGIC_VECTOR(10 downto 0);
         chefm_y     : in  STD_LOGIC_VECTOR(10 downto 0);
-        action      : in  STD_LOGIC; --pick up item/submit button
+        action      : in  STD_LOGIC; --pick up item/submit button btn0/btnc
         --for character selection
         sw0         : in  STD_LOGIC;
         sw1         : in  STD_LOGIC;
@@ -75,7 +75,7 @@ architecture Behavioral of cookfood is
     signal held_potato_r, held_potato_g, held_potato_b : STD_LOGIC_VECTOR(3 downto 0);
     signal held_burger_r, held_burger_g, held_burger_b : STD_LOGIC_VECTOR(3 downto 0);
     signal held_fries_r, held_fries_g, held_fries_b : STD_LOGIC_VECTOR(3 downto 0);
-    -- CHEESEP, BUNSCHEESE, BUNSPATTY don't need normal signals (only held items)
+    --CHEESEP, BUNSCHEESE, BUNSPATTY don't need normal signals (only held items)
     signal held_cheesep_r, held_cheesep_g, held_cheesep_b : STD_LOGIC_VECTOR(3 downto 0);
     signal held_bunspatty_r, held_bunspatty_g, held_bunspatty_b : STD_LOGIC_VECTOR(3 downto 0);
     signal held_bunscheese_r, held_bunscheese_g, held_bunscheese_b : STD_LOGIC_VECTOR(3 downto 0);
@@ -110,7 +110,7 @@ architecture Behavioral of cookfood is
     
     --timer
     signal frame_count : integer range 0 to 59 := 0;
-    signal time_left   : integer range 0 to 180 := 180; -- 3min timer
+    signal time_left   : integer range 0 to 180 := 180; -- 3 min timer
     
     --message display
     signal msg_r, msg_g, msg_b : STD_LOGIC_VECTOR(3 downto 0);
@@ -457,7 +457,7 @@ begin
     port map (
         pixel_row => pixel_row,
         pixel_col => pixel_col,
-        icon_x    => "00010100000", -- 208 left 30 = 178 -> 160
+        icon_x    => "00010100000", -- 160
         icon_y    => "00001011101", -- 93
         red       => cola_r,
         green     => cola_g,
@@ -469,7 +469,7 @@ begin
     port map (
         pixel_row => pixel_row,
         pixel_col => pixel_col,
-        icon_x => "00100011101", -- 315 left 30 = 285
+        icon_x => "00100011101", -- 285
         icon_y => "00001011101", -- 93
        
         red       => sprite_r,
@@ -536,7 +536,7 @@ begin
         visible   => held_cola_visible
     );
     
-    -- Holding a copy of table items
+    --Holding a copy of table items
     held_sprite_inst : sprite_display
     port map (
         pixel_row => pixel_row,
@@ -716,24 +716,24 @@ begin
         visible      => intro_visible
     );
     
-    --align left hand position for drinks, adjust later if needed
-    hand_drink_x <= chefm_x + 32; --test two pixel right more on chefm
+    --align left hand position for drinks
+    hand_drink_x <= chefm_x + 32; 
     hand_drink_y <= chefm_y + 99; --position of bottom of the hand on chefm
     
     --align left hand position for plate items
     hand_plate_x <= chefm_x + 60;
-    hand_plate_y <= chefm_y + 102; --105->102 a bit more up 
+    hand_plate_y <= chefm_y + 102; 
     
     
     -- chef center near cola center, cola center = 192, 125
     -- chef center is chefm_x + 98, chefm_y + 98
     near_cola <= '1' when
-        (chefm_x + 98) >= 162 and (chefm_x + 98) <= 222 and --177-> 162  207->222
+        (chefm_x + 98) >= 162 and (chefm_x + 98) <= 222 and 
         (chefm_y + 98) >= 200 and (chefm_y + 98) <= 276 else '0'; 
     
     -- chef center near sprite center, sprite center = 317, 125
     near_sprite <= '1' when
-        (chefm_x + 98) >= 287 and (chefm_x + 98) <= 347 and --302,332 -> 287 347
+        (chefm_x + 98) >= 287 and (chefm_x + 98) <= 347 and 
         (chefm_y + 98) >= 200 and (chefm_y + 98) <= 276 else '0'; 
         
     -- trash center around (760, 510)
@@ -805,7 +805,6 @@ begin
         red   <= "1100";
         green <= "1100";
         blue  <= "1111";
-        --ADDED: ***
         slot_visible <= '0';
 
         if pixel_row >= 600 then
@@ -814,13 +813,13 @@ begin
             blue  <= "0000";
         end if;
 
-        if (pixel_col <= 80 and pixel_row >= 170 and pixel_row <= 600) then --left table  90->170
-            red   <= "1011"; --1010
-            green <= "0101"; --0100
-            blue  <= "0001"; --0000
+        if (pixel_col <= 80 and pixel_row >= 170 and pixel_row <= 600) then --left table  
+            red   <= "1011"; 
+            green <= "0101"; 
+            blue  <= "0001"; 
         end if;
 
-        if (pixel_col <= 800 and pixel_row >= 0 and pixel_row <= 170) then -- top table 120, 220
+        if (pixel_col <= 800 and pixel_row >= 0 and pixel_row <= 170) then -- top table 
             red   <= "1011";
             green <= "0101";
             blue  <= "0001";
@@ -832,7 +831,7 @@ begin
             blue  <= "0001";
         end if;
         
-        --SERVING STATION (height 90 and 150 can change later) 550 to 640 (635) x position span        
+        --SERVING STATION      
         if (pixel_col >= 550 and pixel_col <= 560 and pixel_row >= 102 and pixel_row <= 163) then --90->102
             red   <= "1111";
             green <= "1111";
@@ -899,8 +898,8 @@ begin
             blue  <= "1111";
         end if;
         
-        --***
-        -- declare signal and set slot_visible = '0'
+        
+        --item slot grey
         if (pixel_col >= 8 and pixel_col <= 71 and pixel_row >= 230 and pixel_row <= 293) then
             slot_visible <= '1';
             red <= "1010"; --grey
@@ -965,7 +964,8 @@ begin
             blue <= "1010";
         end if;
         
-        ---------------------------
+        
+        --Near item highlight border (white -> yellow)
         if (pixel_col >= 8 and pixel_col <= 71 and pixel_row >= 230 and pixel_row <= 293) then
             if (pixel_col <= 11 OR pixel_col >= 68 OR pixel_row <= 233 OR pixel_row >= 290) then
             slot_visible <= '1';
@@ -1100,7 +1100,6 @@ begin
                 end if;
             end if;
         end if;
-        --***
     
 
         if buns_visible = '1' then

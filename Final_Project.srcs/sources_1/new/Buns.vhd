@@ -25,9 +25,6 @@ architecture Behavioral of buns_display is
     constant SPRITE_W : integer := 32;
     constant SPRITE_H : integer := 32;
 
-    --constant BUNS_X : integer := 8; --8
-    --constant BUNS_Y : integer := 230; --300 -277
-
     subtype buns_color_t is std_logic_vector(3 downto 0);
 
     -- used sprite size 

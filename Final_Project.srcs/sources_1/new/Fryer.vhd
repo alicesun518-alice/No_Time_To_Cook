@@ -128,17 +128,17 @@ begin
                 when "0001" => 
                 red <= "0000"; green <= "0000"; blue <= "0000"; -- black
                 
-                -- brown (potato)  ~ (210,160,70)
+                -- brown 
                 when "1000" => 
                 red   <= "1100";
                 green <= "1001";
                 blue  <= "0100";
                 
-                -- dark brown (knife holder / patty) ~ (110,60,30)
+                -- dark brown 
                 when "0011" => 
                 red <= "0110"; green <= "0011"; blue <= "0001";
                 
-                -- yellow (cheese)
+                -- yellow
                 when "0100" => 
                 red <= "1111"; green <= "1111"; blue <= "0000";
                 

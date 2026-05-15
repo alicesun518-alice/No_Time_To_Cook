@@ -20,9 +20,6 @@ architecture Behavioral of sprite_display is
     constant SPRITE_W : integer := 64;
     constant SPRITE_H : integer := 64;
 
-    --constant SPRITE_X : integer := 728;
-    --constant SPRITE_Y : integer := 220;
-
     subtype sprite_color_t is std_logic_vector(3 downto 0);
     type sprite_row_t is array(0 to SPRITE_W-1) of sprite_color_t;
     type sprite_sprite_t is array(0 to SPRITE_H-1) of sprite_row_t;

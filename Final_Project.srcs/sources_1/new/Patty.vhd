@@ -25,12 +25,8 @@ architecture Behavioral of patty_display is
     constant SPRITE_W : integer := 32;
     constant SPRITE_H : integer := 32;
 
-    --constant PATTY_X : integer := 8; 
-    --constant PATTY_Y : integer := 354; --385
-
     subtype patty_color_t is std_logic_vector(3 downto 0);
 
-    -- IMPORTANT: use SPRITE size here (NOT BUNS_W/H)
     type patty_row_t is array(0 to SPRITE_W-1) of patty_color_t;
     type patty_sprite_t is array(0 to SPRITE_H-1) of patty_row_t;
 
@@ -93,8 +89,6 @@ begin
         if (px >= bx and px < bx + PATTY_W and
             py >= by and py < by + PATTY_H) then
 
---            -sx := px - BUNS_X;
---            sy := py - BUNS_Y;
             sx := (px - bx) / 2;
             sy := (py - by) / 2;
 

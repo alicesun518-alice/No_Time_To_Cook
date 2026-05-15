@@ -23,9 +23,6 @@ architecture Behavioral of potato_display is
     constant SPRITE_W : integer := 32;
     constant SPRITE_H : integer := 32;
 
-    --constant POTATO_X : integer := 728;
-    --constant POTATO_Y : integer := 354; --385
-
     subtype potato_color_t is std_logic_vector(3 downto 0);
     type potato_row_t is array(0 to SPRITE_W-1) of potato_color_t;
     type potato_sprite_t is array(0 to SPRITE_H-1) of potato_row_t;
@@ -100,32 +97,32 @@ begin
             end if;
 
             case color_idx is
-                when "0000" =>    -- 0000 = transparent
+                when "0000" =>    -- transparent
                     red   <= "0000";
                     green <= "0000";
                     blue  <= "0000";
 
-                when "0001" =>    -- 0001 = black
+                when "0001" =>    -- black
                     red   <= "0000";
                     green <= "0000";
                     blue  <= "0000";
 
-                when "0010" =>    -- 0010 = bun
+                when "0010" =>    -- bun
                     red   <= "1100";
                     green <= "1001";
                     blue  <= "0100";
 
-                when "0011" =>    -- 0011 = patty
+                when "0011" =>    -- patty
                     red   <= "0110";
                     green <= "0011";
                     blue  <= "0001";
 
-                when "0100" =>    -- 0100 = cheese
+                when "0100" =>    -- cheese
                     red   <= "1111";
                     green <= "1111";
                     blue  <= "0000";
 
-                when "0101" =>    -- 0101 = white
+                when "0101" =>    -- white
                     red   <= "1111";
                     green <= "1111";
                     blue  <= "1111";

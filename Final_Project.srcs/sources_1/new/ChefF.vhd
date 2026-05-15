@@ -166,7 +166,7 @@ begin
             end if;
 
             case color_idx is
-                when "0000" => -- transparent/background
+                when "0000" => -- transparent
                     red   <= "0000";
                     green <= "0000";
                     blue  <= "0000";

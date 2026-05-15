@@ -23,9 +23,6 @@ architecture Behavioral of plate_display is
     constant SPRITE_W : integer := 32;
     constant SPRITE_H : integer := 32;
 
-    --constant PLATE_X : integer := 8;
-    --constant PLATE_Y : integer := 478; 
-
     subtype plate_color_t is std_logic_vector(3 downto 0);
     type plate_row_t is array(0 to SPRITE_W-1) of plate_color_t;
     type plate_sprite_t is array(0 to SPRITE_H-1) of plate_row_t;
@@ -100,22 +97,22 @@ begin
             end if;
 
             case color_idx is
-                when "0000" =>    -- 0000 = transparent
+                when "0000" =>    -- transparent
                     red   <= "0000";
                     green <= "0000";
                     blue  <= "0000";
 
-                when "0001" =>    -- 0001 = black
+                when "0001" =>    -- black
                     red   <= "0000";
                     green <= "0000";
                     blue  <= "0000";
 
-                when "0111" =>    -- 0111= grey
+                when "0111" =>    -- grey
                     red   <= "1011";
                     green <= "1011";
                     blue  <= "1011";
 
-                when "0101" =>    -- 0101 = white
+                when "0101" =>    -- white
                     red   <= "1111";
                     green <= "1111";
                     blue  <= "1111";

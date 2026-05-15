@@ -34,7 +34,8 @@ architecture Behavioral of overcooked is
 
     signal chefm_x : STD_LOGIC_VECTOR(10 downto 0) := conv_std_logic_vector(400, 11);
     signal chefm_y : STD_LOGIC_VECTOR(10 downto 0) := conv_std_logic_vector(300, 11);
-
+    
+    --For score count: 
     signal count   : STD_LOGIC_VECTOR(20 downto 0) := (others => '0');
     signal display : STD_LOGIC_VECTOR(7 downto 0) := (others => '0');
     signal led_mpx : STD_LOGIC_VECTOR(2 downto 0);
@@ -111,21 +112,18 @@ begin
             last_sw2 <= sw2;
             
             if count = 0 then
-                if btnl = '1' and chefm_x > 30 then --80 -64 64-30 
+                if btnl = '1' and chefm_x > 30 then 
                     chefm_x <= chefm_x - 8;
-                elsif btnr = '1' and chefm_x < 580 then  --544
+                elsif btnr = '1' and chefm_x < 580 then 
                     chefm_x <= chefm_x + 8;
                 end if;
 
-                if btnu = '1' and chefm_y > 150 then --220, 170
+                if btnu = '1' and chefm_y > 150 then 
                     chefm_y <= chefm_y - 8;
-                elsif btnd = '1' and chefm_y < 420 then  --408 ->504 -> 400
+                elsif btnd = '1' and chefm_y < 420 then  
                     chefm_y <= chefm_y + 8; 
                 end if;
-            end if;
-            -- Try passing chefm_y on to the anode
-            
-            
+            end if;           
         end if;
     end process;
 

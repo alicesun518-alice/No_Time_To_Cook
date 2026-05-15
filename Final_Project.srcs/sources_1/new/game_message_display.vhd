@@ -49,7 +49,7 @@ begin
             end if;
         end if;
 
-        --Message display: TIME OUT + COOKED!
+        --Message display: TIME OUT & COOKED!
         if show_time_out = '1' then
             --red TIME OUT 
             if
@@ -142,7 +142,7 @@ begin
                 blue <= "0000";
             end if;
 
-        --Message: YOU WIN + COOKING!
+        --Message: YOU WIN & COOKING!
         elsif show_victory = '1' then
 
             --green YOU WIN

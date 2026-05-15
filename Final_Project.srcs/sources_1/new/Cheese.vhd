@@ -22,9 +22,6 @@ architecture Behavioral of cheese_display is
 
     constant SPRITE_W : integer := 32;
     constant SPRITE_H : integer := 32;
-    
-    --constant CHEESE_X : integer := 728;
-    --constant CHEESE_Y : integer := 230; --277
 
     subtype cheese_color_t is std_logic_vector(3 downto 0);
     type cheese_row_t is array(0 to SPRITE_W-1) of cheese_color_t;

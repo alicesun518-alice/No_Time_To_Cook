@@ -206,8 +206,8 @@ begin
         item_a_code(i) <= get_item_a(order_code(i));
         item_b_code(i) <= get_item_b(order_code(i));
 
-        -- For single-item orders, center the icon more.
-        -- For two-item orders, overlap slightly so two 64x64 icons still fit inside a 90-pixel box.
+        -- For single-item orders, center the icon more
+        -- For two-item orders, overlap slightly for space
         icon_a_x(i) <= std_logic_vector(to_unsigned(START_X + i * (ORDER_W + GAP) + 13, 11))
                        when order_code(i) = 1 or order_code(i) = 2 else
                        std_logic_vector(to_unsigned(START_X + i * (ORDER_W + GAP) + 0, 11));
@@ -262,13 +262,13 @@ begin
     py := to_integer(unsigned(pixel_row));
     bar_w := (ORDER_W * time_left) / 180;
 
-    -- Draw order cards, but hide completed old orders
+    -- Draw order cards and hide completed old orders
     for k in 0 to 7 loop
         ox := START_X + k * (ORDER_W + GAP);
 
         if k >= current_order then
 
-            -- white card
+        -- white card
         if px >= ox and px < ox + ORDER_W and
            py >= ORDER_Y and py < ORDER_Y + ORDER_H then
             visible <= '1';
@@ -277,7 +277,7 @@ begin
             blue  <= "1111";
         end if;
         
-        -- timer bar: green normally, red when low time
+        -- timer bar: green normally, red when 30 seconds left 
         if px >= ox and px < ox + bar_w and
            py >= ORDER_Y and py < ORDER_Y + 10 then
             visible <= '1';
@@ -308,7 +308,7 @@ begin
         end if;
     end loop;
 
-    -- Draw icons, but hide completed item inside current order
+    -- Draw icons and hide completed item inside current order
     for k in 0 to 7 loop
 
         if k >= current_order then
