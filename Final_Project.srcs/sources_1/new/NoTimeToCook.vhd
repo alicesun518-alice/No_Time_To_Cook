@@ -3,7 +3,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.STD_LOGIC_ARITH.ALL;
 use IEEE.STD_LOGIC_UNSIGNED.ALL;
 
-entity overcooked is
+entity NoTimeToCook is
     port (
         clk_in      : in  STD_LOGIC;
         VGA_red     : out STD_LOGIC_VECTOR(3 downto 0);
@@ -22,9 +22,9 @@ entity overcooked is
         SEG7_anode  : out STD_LOGIC_VECTOR(7 downto 0);
         SEG7_seg    : out STD_LOGIC_VECTOR(6 downto 0)
     );
-end overcooked;
+end NoTimeToCook;
 
-architecture Behavioral of overcooked is
+architecture Behavioral of NoTimeToCook is
 
     signal pxl_clk : STD_LOGIC := '0';
 
